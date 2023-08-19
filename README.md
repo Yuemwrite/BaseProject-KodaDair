@@ -1106,9 +1106,9 @@ Kullanıcılar, ilham verici veya önemli buldukları gönderileri kolayca favor
 
 # <h1 name="diger"><strong>Projeye İlişkin Diğer Bilgiler<strong></h1>
 
-Projeyi yazdığım IDE: JetBrains Rider 2023.2
-Kullandığım Versiyon: .NET 7
-Programlama Dili ve Teknolojiler: C#, .Net Core, Web API Projesi
+ - Tercih Edilen IDE: JetBrains Rider 2023.2
+ - Kullanılan Versiyon: .NET 7
+ - Programlama Dili ve Teknolojiler: C#, .Net Core, Web API Projesi
 
 # <h1 name="kapanis"><strong>Kapanış<strong></h1>
 

@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0-windows</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="12.0.1" />
+      <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+      <PackageReference Include="FluentEmail.MailKit" Version="3.0.2" />
+      <PackageReference Include="MailKit.AspNet" Version="6.0.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.4" />
+      <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.4" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="7.0.4" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.4" />
+      <PackageReference Include="Serilog.AspNetCore" Version="6.1.1-dev-00295" />
+      <PackageReference Include="Serilog.Extensions.Logging.File" Version="3.0.1-dev-00077" />
+      <PackageReference Include="Serilog.Sinks.Seq" Version="5.2.3-dev-00262" />
+      <PackageReference Include="ServiceStack.Redis" Version="6.9.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\BaseProject.Application\BaseProject.Application.csproj" />
+      <ProjectReference Include="..\BaseProject.Domain\BaseProject.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Log\Seq" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Configurations\appsetting.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+</Project>

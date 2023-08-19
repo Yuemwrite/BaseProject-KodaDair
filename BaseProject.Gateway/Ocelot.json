@@ -1,0 +1,56 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/Api/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/Api/{everything}",
+      "UpstreamHttpMethod": [ "Get","Post","Delete","Put" ],
+      "SwaggerKey": "Api"
+    },
+    {
+      "DownstreamPathTemplate": "/Identity/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 3000
+        }
+      ],
+      "UpstreamPathTemplate": "/Identity/{everything}",
+      "UpstreamHttpMethod": [ "Get","Post","Delete","Put"],
+      "SwaggerKey": "Identity"
+    }
+  ],
+
+  "SwaggerEndPoints": [
+    {
+      "Key": "Identity",
+      "Config": [
+        {
+          "Name": "Identity API",
+          "Version": "v1",
+          "Url": "http://localhost:3000/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "Api",
+      "Config": [
+        {
+          "Name": "Web API",
+          "Version": "v1",
+          "Url": "http://localhost:5000/swagger/v1/swagger.json"
+        }
+      ]
+    },
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:1000"
+  }
+}

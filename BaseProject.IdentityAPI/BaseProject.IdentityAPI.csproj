@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.4" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\BaseProject.Application\BaseProject.Application.csproj" />
+      <ProjectReference Include="..\BaseProject.Infrastructure\BaseProject.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\BaseProject.Infrastructure\Configurations\appsettings.Local.json">
+        <Link>appsettings.Local.json</Link>
+      </Content>
+      <Content Include="..\BaseProject.Infrastructure\Configurations\appsettings.Production.json">
+        <Link>appsettings.Production.json</Link>
+      </Content>
+    </ItemGroup>
+
+</Project>

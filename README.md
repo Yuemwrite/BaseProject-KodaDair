@@ -30,7 +30,7 @@
    * [Auto Mapper](#AutoMapper)
    * [Seed Yapısı](#seed-yapi)
    * [Saylalama Yapısı(Pagination)](#pagination)
-   * [Environment Yapsısı](#environment)
+   * [Environment Yapısı](#environment)
 
 * [KodaDair](#koda-dair)
    * [KodaDair Konusu Nedir?](#kodadair-konu)
@@ -921,7 +921,7 @@ Pagination genellikle aşağıdaki bileşenleri içerir:
             return HandleResult(result);
 ```
 
-# <h3 name="environment"><strong>Environment Yapısısı<strong></h3>
+# <h3 name="environment"><strong>Environment Yapısı<strong></h3>
 
 Projede Local ve Production olmak üzere 2 farklı environment (ortam) yer almaktadır. Projenin ayağa kalkması için infrastructure altındaki Configurations klasöründe yer alan local ve production ortamlarında temel ayarlamaların yapılması gerekir. (Infrastructure, API katmanlarıyla bağlantılı çalışmaktadır. Ayarlamaların Infrastructure katmanında yapılması yeterli olacaktır.)
 

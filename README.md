@@ -1,6 +1,6 @@
 ## .NET CORE İle Backend Alt Yapı ve KodaDair Projesi
 
-![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/2d00b58d-4eb4-4a03-bacc-de5f0068704a)
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/3492c328-13dc-4fd4-afac-9ef58bc5043c)
 
 <h3><strong>İçindekiler 📄<strong></h3>
 
@@ -80,7 +80,7 @@ Bu nedenlerden dolayı, katmanlı mimari yaygın olarak kullanılan bir yazılı
 
 ### <h2 id="onion-architecture">Onion Architecture</h2>
  
-![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/51e70074-89ff-4fa1-8bbc-592029d0b5c8)
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/b65aeed7-879f-4f63-b303-981b6f7e8a19)
 
  
 Onion (Soğan) mimarisi, yazılım uygulamalarını geliştirmek için kullanılan bir mimari modeldir. Bu mimaride uygulama, farklı katmanlardan oluşan bir yapıya sahiptir. Her katmanın belli bir sorumluluğu vardır ve katmanlar arasındaki bağımlılık, dıştan içe doğru bir yapı şeklinde düzenlenir.
@@ -203,7 +203,7 @@ Cache, bu sorunu çözmek için araya girer. Sık kullanılan verileri veya işl
   
 # <h3 name="redis-cache"><strong>Redis<strong></h3>
   
-![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/b7b17c1f-22de-4999-b66b-9191542cab69)
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/0dad0970-0ce1-4330-8b12-fca25ed74ca4)
 
   
 Redis, açık kaynaklı bir veri yapısı sunucusu ve cache (ön bellek) çözümüdür. Redis, RAM tabanlı çalışır ve verileri hızlı bir şekilde depolamak ve erişmek için optimize edilmiştir. Redis, hafızada bulunan verilere erişim hızını artırırken, disk tabanlı veritabanlarının gerekli olduğu durumlarda yükü azaltmak için kullanılabilir.
@@ -360,7 +360,7 @@ Bu kod parçası, önce Memory Cache'ten "users" anahtarını kontrol eder ve e�
 
 # <h3 name="ocelot-gateway"><strong>Ocelot Gateway<strong></h3>
 
-![resim](https://github.com/Yuemwrite/BaseProject/assets/32547627/71604b23-4673-4728-964d-814bf7e79d2b)
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/9375669f-4ff2-408b-93a7-a9d9a6f275bc)
 
 
 Ocelot, bir API Gateway çerçevesidir. API Gateway, bir sistemdeki farklı mikro hizmetlerin veya backend servislerin önünde bulunan ve bu servislerin yönetimini, güvenliğini, performansını ve ölçeklenebilirliğini sağlamak için kullanılan bir ara katmandır. Ocelot, bu rolü yerine getiren popüler bir API Gateway çözümüdür.
@@ -432,20 +432,21 @@ Projede ocelot yapılandırmasını aşağıdaki gibi tanımladım:
 
 Web API katmanı 5000, Identity API katmanı 3000 portu olarak ayarlıyken swagger ortamında 1000 portu üzerinden işlemler başlatılmaktadır.
 
-![resim](https://github.com/Yuemwrite/BaseProject/assets/32547627/d2083ba9-1b77-40b5-af4d-d08bf4b73fdc)
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/932ff65e-44d7-4092-bc06-b2856f616eb2)
 
-![resim](https://github.com/Yuemwrite/BaseProject/assets/32547627/38c8c481-44d9-406f-8919-c81cd722e44f)
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/4b0eba87-b1af-4e5b-8a87-abd83b38d029)
+
 
 # <h3 name="jwt-token"><strong>Json Web Token (JWT) Nedir<strong></h3>
 
-![resim](https://github.com/Yuemwrite/BaseProject/assets/32547627/843b1185-9339-4cc9-ad11-671bf24649a1)
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/214dffdc-1829-44cc-92a7-08f94d09f046)
 
 
 JWT (JSON Web Token), kullanıcıların kimlik doğrulamasını sağlamak için kullanılan bir açık standarttır. Genellikle bir kullanıcının yetkilendirilmesini ve dijital olarak imzalanmış bilgilerin güvenli bir şekilde paylaşılmasını sağlamak için kullanılır. JWT'ler, JSON formatında verileri kodlamak ve güvenli bir şekilde taşımak için kullanılır.
 
 Üye girişi yapılırken API üzerinde örnek Token çıktısı :
 
-![resim](https://github.com/Yuemwrite/BaseProject/assets/32547627/7f65c3a0-89cb-450f-abaa-d0b2cab2b789)
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/72be25f3-a45f-4866-b661-0fb9481643cd)
 
 
 # <h3 name="refresh-token"><strong>Refresh Token<strong></h3>
@@ -583,7 +584,7 @@ public class SendOneTimePasswordJob : IJob
 ```
 # <h3 name="rabbitmq"><strong>RabbitMQ<strong></h3>
 
-![resim](https://github.com/Yuemwrite/BaseProject/assets/32547627/8d38e554-7721-4986-97e5-73723f571294)
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/00c5da23-41ba-4ea3-b3c0-208283bc67e1)
 
 
 RabbitMQ, açık kaynaklı ve çoklu protokol destekli bir mesaj kuyruğu (message queue) yazılımıdır. Mesaj kuyrukları, dağıtık sistemlerde ve uygulamalarda mesajların asenkron olarak iletilmesini ve işlenmesini sağlayan araçlardır. Bu, sistemlerin daha esnek, ölçeklenebilir ve birbirinden bağımsız çalışmasına olanak tanır.
@@ -620,6 +621,8 @@ Exchange (Değişim): Üreticilerin mesajları kuyruklara gönderirken belirli k
 ```
 
 # <h3 name="exception-middleware"><strong>Exception Middleware<strong></h3>
+
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/d61eac6e-1468-4a09-a5ae-a4385ae5e9b9)
 
 Web uygulamaları kullanıcıların etkileşimde bulunduğu ve çeşitli isteklerin işlendiği platformlardır. Bu isteklerin işlenmesi sırasında hatalar meydana gelebilir. Örneğin, veritabanına erişim hatası, geçersiz istek formatı, yetkilendirme sorunları vb. Bu hataların kullanıcıya anlaşılır bir şekilde sunulması, uygulamanın güvenliğinin sağlanması ve sorunların hızla tespit edilmesi gereklidir.
 
@@ -693,7 +696,7 @@ Bu şekilde, kullanıcılar daha iyi hata mesajları alırken, geliştiriciler d
 
 # <h3 name="AutoMapper"><strong>Auto Mapper<strong></h3>
 
-![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/11470c03-96d9-48c2-848d-cfc14cdcd02f)
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/2e240f16-c988-4654-8028-dc037216c961)
 
 AutoMapper, bir nesne eşlemesi (object mapping) kütüphanesidir ve genellikle bir veri modelini başka bir veri modeline dönüştürmek için kullanılır. Özellikle yazılım geliştirme projelerinde veritabanı varlıklarını, veri transfer nesnelerini (DTO'lar) veya görüntü modellerini dönüştürmek için tercih edilen bir araçtır.
 
@@ -1059,49 +1062,48 @@ Kullanıcılar, ilham verici veya önemli buldukları gönderileri kolayca favor
  
  IdentityApi katmanında kullanıcının sisteme giriş yaptığı ve şifremi unuttum akışlarının olduğu API'ler yer almaktadır.
 
-![resim](https://github.com/Yuemwrite/BaseProject/assets/32547627/37078950-06e7-4d2d-8940-af0ea0c301d6)
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/ba319656-8131-4083-88f6-6f0b557a3151)
 
 
  WebApi katmanında ise tüm kullanıcı işlerinin gerçekleştirildiği Api'ler yer almaktadır. Sırasıyla:
 
  - Sisteme Kayıt Yapan API'ler
 
-![resim](https://github.com/Yuemwrite/BaseProject/assets/32547627/a158358f-40d5-4d3c-85da-4865318c97eb)
-
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/7846b84b-a3cf-4651-a72e-ce1aefb9f3b5)
 
 - Eğitim Bilgilerinin Yönetildiği API'ler
 
- ![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/64521db9-790d-4065-9c0a-03f37c990fa3)
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/193280fd-1c24-4c36-8664-18bfe6b538f3)
 
 
 - İş Deneyimi Bilgilerinin Yönetildiği API'ler
 
- ![resim](https://github.com/Yuemwrite/BaseProject/assets/32547627/4fdaf3f8-4872-44dd-ae9f-405630df9c71)
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/0288f193-c5c2-4c3f-8fa5-67a35131f0f6)
 
 - Kullanıcı Profili Bilgilerinin Yönetildiği API'ler
 
- ![resim](https://github.com/Yuemwrite/BaseProject/assets/32547627/53d3d2c1-8ea7-4da8-a329-6fa5b3f8a7ff)
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/1c541b83-5d5b-42f4-8127-fcabe2b942fd)
 
 - Kullanıcı Takip/Takipçi İsteklerini ve Hesap Gizliliğini Yönetildiği API'ler
 
- ![resim](https://github.com/Yuemwrite/BaseProject/assets/32547627/c3f4d721-ff9a-4288-8097-59f77d2b6ef2)
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/9d3fa8cb-6c6f-4bbb-80e7-3ce238f19a96)
 
 - Gönderi İşlemlerinin Yönetildiği API'ler
 
- ![resim](https://github.com/Yuemwrite/BaseProject/assets/32547627/48f1ee86-cc02-4c49-a58e-3dc86e30d52b)
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/f13412fe-3341-4904-b7c5-b900c4d8b9a4)
 
 
 - Yorum / Yanıt / Beğeni İşlemlerinin Yönetildiği API'ler
 
- ![resim](https://github.com/Yuemwrite/BaseProject/assets/32547627/6870b456-8e2b-4ac4-b77c-b95e1f54a91e)
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/44b9e3ae-e0eb-465c-8c3e-aa1f8087b60e)
 
- ![resim](https://github.com/Yuemwrite/BaseProject/assets/32547627/582dce64-c2bd-42c2-a316-d7fafcdc6e03)
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/5fe33f10-cca9-4dc6-9c22-7a0c72ad0861)
 
- ![resim](https://github.com/Yuemwrite/BaseProject/assets/32547627/b2b343f4-015f-40a0-93a7-5cbb0e89e1ee)
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/a2396893-9a05-4085-be14-d60e687d3fb7)
 
 - Admin İşlemlerinin Yönetildiği API'ler
 
-![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/7c567551-5719-4a9a-9a4b-0bc9256beec2)
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/f7183a35-c96f-4fc1-ba16-e65b4376790f)
 
 
 # <h1 name="diger"><strong>Projeye İlişkin Diğer Bilgiler<strong></h1>

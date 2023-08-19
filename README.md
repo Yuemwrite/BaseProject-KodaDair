@@ -38,6 +38,8 @@
    * [KodaDair Hedeflenen Modüller](#kodadair-hedef)
    * [KodaDair Kullanılan API'ler](#kodadair-api)
  
+* [Projeye İlişkin Diğer Bilgiler](#diger)
+ 
 * [Kapanış](#kapanis)
       
 * [Kaynakçalar](#kaynakca)
@@ -46,9 +48,9 @@
 
 Merhabalar, ben Yunus Emre 👋
 
-Karadeniz Teknik Üniversitesi Yazılım Mühendisliği bölümünden mezun oldum. 2 yıla yakındır yazılım mühendisi olarak özel bir firmada .net core / c# teknolojileri (backend developer) alanında  çalışmalar yapıyorum. 2 yıl boyunca içinde olduğum projelerden elde ettiğim deneyimler, araştırdığım kaynaklar, makaleler ve izlediğim eğitimlerden öğrendiğim bilgileri bir araya toplamak amacıyla .net core / web api tarafında bir alt yapı hazırlamaya ve hazırladığım alt yapıya da örnek bir proje senaryosu eklemeye karar verdim. Bu karar neticesinde içerisinde sektörde kullanılan ve talep edilen birçok farklı .net kütüphanesini kullanarak bir proje ortaya çıkarmaya çalıştım. En temel amacım insanların farklı konuları farklı kaynaklarda aramak yerine her bir konuyu tek bir çatı altında bulmalarına öncülük etmek ve gün geçtikçe içeriği zenginleştirerek insanlara daha faydalı olmaktır. :blush:
+Karadeniz Teknik Üniversitesi Yazılım Mühendisliği bölümünden mezun oldum. 2 yıla yakındır yazılım mühendisi olarak özel bir firmada .net core / c# teknolojileri (backend developer) alanında  çalışmalar yapıyorum. 2 yıl boyunca içinde olduğum projelerden elde ettiğim deneyimler, araştırdığım kaynaklar, makaleler ve izlediğim eğitimlerden öğrendiğim bilgileri bir araya toplamak amacıyla .net core / web api tarafında bir alt yapı hazırlamaya ve hazırladığım alt yapıya da örnek bir proje senaryosu eklemeye karar verdim. Bu karar neticesinde içerisinde sektörde kullanılan ve talep edilen birçok farklı .net kütüphanesini kullanarak bir proje ortaya çıkarmaya çalıştım. En temel amacım insanların farklı konuları farklı kaynaklarda aramak yerine her bir konuyu tek bir çatı altında bulmalarına olanak sağlamak ve gün geçtikçe içeriği zenginleştirerek insanlara daha faydalı olmaktır. Ayrıca sürekli gelişen ve büyüyen .NET / .NET Core alanında birçokları tarafından yazılan makaleler, çekilen video eğitimler gibi kaynakların bol olduğu zincir ben de hazırlamış olduğum bu kaynak ile bir halka eklemek ve zincire dahil olmak istedim. Oluşturduğum kaynağı beğenmeniz dileğiyle.. :blush:
 
-*Sizler de kaynağa destek ve [![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/yuemwrite) olabilir, daha çok kişiye erişmesini sağlayabilirsiniz.* :dizzy:
+*Sizler de kaynağa destek ve [![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/yuemwrite) olabilir, kaynağın daha çok kişiye erişmesini sağlayabilirsiniz.* :dizzy:
 
 # <h1 id="proje-mimari"><strong>Proje Mimarisinde Kullanılan Yapılar<strong></h2>
 
@@ -959,10 +961,18 @@ Projede Local ve Production olmak üzere 2 farklı environment (ortam) yer almak
 
 Migration Çıkmak ve Database Oluşturmak İçin Terminalde Aşağıdaki Kodların, Environment'e göre, Çalıştırılması Gerekir
 
-<code>Migration / Environment</code>
+<code>Environment Seçimi</code>
 ```csharp
    $Env:ASPNETCORE_ENVIRONMENT = "Local"
+```
+
+<code>Migration Ekleme</code>
+```csharp
    dotnet ef migrations add Db_v1 -p Migratiors.Local --context ApplicationDbContext -o Migrations -s BaseProject.WebAPI
+```
+
+<code>Database Güncelleme</code>
+```csharp
    dotnet ef database update -p BaseProject.WebAPI -c ApplicationDbContext 
 ```
 
@@ -1092,6 +1102,13 @@ Kullanıcılar, ilham verici veya önemli buldukları gönderileri kolayca favor
 - Admin İşlemlerinin Yönetildiği API'ler
 
 ![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/7c567551-5719-4a9a-9a4b-0bc9256beec2)
+
+
+# <h1 name="diger"><strong>Projeye İlişkin Diğer Bilgiler<strong></h1>
+
+Projeyi yazdığım IDE: JetBrains Rider 2023.2
+Kullandığım Versiyon: .NET 7
+Programlama Dili ve Teknolojiler: C#, .Net Core, Web API Projesi
 
 # <h1 name="kapanis"><strong>Kapanış<strong></h1>
 

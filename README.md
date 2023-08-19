@@ -1,7 +1,6 @@
+## .NET CORE İle Backend Alt Yapı ve KodaDair Projesi
 
-## .NET CORE Base Project 
-
-![resim](https://user-images.githubusercontent.com/32547627/228508380-3572fadb-1ec8-4201-9f22-908709ec9121.png)
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/2d00b58d-4eb4-4a03-bacc-de5f0068704a)
 
 <h3><strong>İçindekiler 📄<strong></h3>
 
@@ -13,6 +12,7 @@
   * [Repository Pattern](#repository-pattern)
   * [Dependency Injection](#dependency-injection)
   * [CQRS](#cqrs)
+  * [Code First](#code-first)
 
 * [Proje Alt Yapısında Yer Verilen Yapılar](#alt-yapi)
    * [Cache](#cache)
@@ -30,6 +30,7 @@
    * [Auto Mapper](#AutoMapper)
    * [Seed Yapısı](#seed-yapi)
    * [Saylalama Yapısı(Pagination)](#pagination)
+   * [Environment Yapsısı](#environment)
 
 * [KodaDair](#koda-dair)
    * [KodaDair Konusu Nedir?](#kodadair-konu)
@@ -77,7 +78,8 @@ Bu nedenlerden dolayı, katmanlı mimari yaygın olarak kullanılan bir yazılı
 
 ### <h2 id="onion-architecture">Onion Architecture</h2>
  
-![resim](https://camo.githubusercontent.com/d88eef2ea43d225d301654686174fff7e07b1a7aa97d5f2f003e1003feea624a/68747470733a2f2f7777772e636f6465776974686d756b6573682e636f6d2f77702d636f6e74656e742f75706c6f6164732f323032302f30362f4f6e696f6e2d4172636869746563747572652d496e2d4153502e4e45542d436f72652e706e67)
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/51e70074-89ff-4fa1-8bbc-592029d0b5c8)
+
  
 Onion (Soğan) mimarisi, yazılım uygulamalarını geliştirmek için kullanılan bir mimari modeldir. Bu mimaride uygulama, farklı katmanlardan oluşan bir yapıya sahiptir. Her katmanın belli bir sorumluluğu vardır ve katmanlar arasındaki bağımlılık, dıştan içe doğru bir yapı şeklinde düzenlenir.
 
@@ -172,6 +174,20 @@ Veri okuma işlemlerini gerçekleştirir.
 İşlemler genellikle veriyi sorgulayan sorgular (query) olarak adlandırılır.
 Veri okuma işlemlerinin optimize edilmesi, raporlamalar ve sorgu tarafında özel ihtiyaçların karşılanması sağlanır.
 
+### <h2 id="#code-first"><strong>Code First<strong></h2> 
+
+Code First, bir yazılım geliştirme yaklaşımı ve veritabanı tasarım yaklaşımını ifade eder. Bu yaklaşım, özellikle Entity Framework gibi ORM (Object-Relational Mapping) araçlarıyla ilişkilendirilir ve veritabanı şemasını, sınıfları ve nesneleri oluşturarak programlama kodlarıyla tanımlamaya dayanır.
+
+Code First yaklaşımı şu adımlarla çalışır:
+
+ - Sınıf Tanımlamaları: Öncelikle, uygulamanızda kullanacağınız nesneleri ve sınıfları tanımlarsınız. Bu sınıflar, genellikle uygulamanızın iş mantığını temsil eder. Örneğin, bir e-ticaret uygulaması için Ürün, Sipariş ve Müşteri gibi sınıflar tanımlayabilirsiniz.
+
+ - İlişki Tanımları: Sınıflar arasındaki ilişkileri ve bağlantıları belirtirsiniz. Örneğin, bir Sipariş sınıfının bir Müşteri sınıfına ait olabileceğini belirtebilirsiniz.
+
+ - Veritabanı Bağlamı (DbContext) Oluşturma: Veritabanı bağlamı, uygulamanızdaki sınıfları ve ilişkileri temel alan bir sınıftır. Bu sınıfı oluşturarak, sınıflarınızı ve ilişkilerinizi veritabanında nasıl temsil edeceğinizi belirtirsiniz.
+
+ - Veritabanını Oluşturma veya Güncelleme: Bu aşamada, belirttiğiniz sınıf ve ilişki tanımlamalarını kullanarak gerçek bir veritabanı şeması oluşturulur veya güncellenir. Bu işlem otomatik olarak yapılır ve genellikle Entity Framework tarafından yönetilir.
+
 <h2 name="alt-yapi"><strong>Proje Alt Yapısında Yer Verilen Yapılar<strong></h2>
 
 <h3 name="cache"><strong>Cache<strong></h3>
@@ -185,7 +201,8 @@ Cache, bu sorunu çözmek için araya girer. Sık kullanılan verileri veya işl
   
 # <h3 name="redis-cache"><strong>Redis<strong></h3>
   
-![resim](https://ps.w.org/redis-cache/assets/banner-1544x500.png?rev=2315420)
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/b7b17c1f-22de-4999-b66b-9191542cab69)
+
   
 Redis, açık kaynaklı bir veri yapısı sunucusu ve cache (ön bellek) çözümüdür. Redis, RAM tabanlı çalışır ve verileri hızlı bir şekilde depolamak ve erişmek için optimize edilmiştir. Redis, hafızada bulunan verilere erişim hızını artırırken, disk tabanlı veritabanlarının gerekli olduğu durumlarda yükü azaltmak için kullanılabilir.
   
@@ -674,6 +691,8 @@ Bu şekilde, kullanıcılar daha iyi hata mesajları alırken, geliştiriciler d
 
 # <h3 name="AutoMapper"><strong>Auto Mapper<strong></h3>
 
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/11470c03-96d9-48c2-848d-cfc14cdcd02f)
+
 AutoMapper, bir nesne eşlemesi (object mapping) kütüphanesidir ve genellikle bir veri modelini başka bir veri modeline dönüştürmek için kullanılır. Özellikle yazılım geliştirme projelerinde veritabanı varlıklarını, veri transfer nesnelerini (DTO'lar) veya görüntü modellerini dönüştürmek için tercih edilen bir araçtır.
 
 AutoMapper Neden Kullanılmalı?
@@ -895,7 +914,57 @@ Pagination genellikle aşağıdaki bileşenleri içerir:
                 cancellationToken: cancellationToken);
 
             return HandleResult(result);
-```   
+```
+
+# <h3 name="environment"><strong>Environment Yapısısı<strong></h3>
+
+Projede Local ve Production olmak üzere 2 farklı environment (ortam) yer almaktadır. Projenin ayağa kalkması için infrastructure altındaki Configurations klasöründe yer alan local ve production ortamlarında temel ayarlamaların yapılması gerekir. (Infrastructure, API katmanlarıyla bağlantılı çalışmaktadır. Ayarlamaların Infrastructure katmanında yapılması yeterli olacaktır.)
+
+<code>Environment'e Göre / AppSettings.json Ayarlamaları</code>
+```csharp
+          {
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "ConnectionStrings": {
+    "SqlServer": ""
+  },
+  "AllowedHosts": "*",
+  "JwtSettings": {
+    "ValidAudience" : "test",
+    "ValidIssuer": "test",
+    "Key": "",
+    "TokenExpirationInMinutes": 15,
+    "RefreshTokenExpirationInDays": 7,
+    "AllowConcurrentSessions": true
+  },
+  "RedisConfiguration": {
+    "Host": "localhost",
+    "Port": 6379
+  },
+  "EmailConfiguration" : {
+    "IsEnabled" : true,
+    "Host" : "",
+    "Port" : 587,
+    "Username" : "",
+    "Password" : "",
+    "SenderEmil" : "",
+    "SenderName" : ""
+  }
+}
+```
+
+Migration Çıkmak ve Database Oluşturmak İçin Terminalde Aşağıdaki Kodların, Environment'e göre, Çalıştırılması Gerekir
+
+<code>Migration / Environment</code>
+```csharp
+   $Env:ASPNETCORE_ENVIRONMENT = "Local"
+   dotnet ef migrations add Db_v1 -p Migratiors.Local --context ApplicationDbContext -o Migrations -s BaseProject.WebAPI
+   dotnet ef database update -p BaseProject.WebAPI -c ApplicationDbContext 
+```
 
 ### <h1 name="koda-dair"><strong>KodaDair<strong></h1>
 
@@ -992,7 +1061,7 @@ Kullanıcılar, ilham verici veya önemli buldukları gönderileri kolayca favor
 
 - Eğitim Bilgilerinin Yönetildiği API'ler
 
-
+ ![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/64521db9-790d-4065-9c0a-03f37c990fa3)
 
 
 - İş Deneyimi Bilgilerinin Yönetildiği API'ler
@@ -1022,7 +1091,7 @@ Kullanıcılar, ilham verici veya önemli buldukları gönderileri kolayca favor
 
 - Admin İşlemlerinin Yönetildiği API'ler
 
-![resim](https://github.com/Yuemwrite/BaseProject/assets/32547627/33b015a0-4e56-4696-9ae5-3b6ebe37d2e4)
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/7c567551-5719-4a9a-9a4b-0bc9256beec2)
 
 # <h1 name="kapanis"><strong>Kapanış<strong></h1>
 

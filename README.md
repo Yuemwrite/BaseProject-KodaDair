@@ -1112,7 +1112,7 @@ Kullanıcılar, ilham verici veya önemli buldukları gönderileri kolayca favor
 
 # <h1 name="kapanis"><strong>Kapanış<strong></h1>
 
-.NET Core alanında öğrendiklerimi harmanlamaya ve alt yapısal olarak birçok konuya değinmeye çalıştığım projemi sizlere de aktarmak istedim. Genel hatlarıyla bahsettiğim projenin içeriğini yine bu repo üzerinden geliştirmeye devam edeceğim. Sizler de proje hakkındaki düşünce ve fikirlerinizi benimle paylaşmak, projeye destek olmak isterseniz memnuniyet duyarım. Projenin sizlere bol fayda sağlaması dileğiyle ✋🎉
+.NET Core alanında öğrendiklerimi harmanlamaya ve alt yapısal olarak birçok konuya değinmeye çalıştığım projemi sizlere de aktarmak istedim. Genel hatlarıyla bahsettiğim projenin içeriğini yine bu repo üzerinden geliştirmeye devam edeceğim. Sizler de proje hakkındaki düşünce ve fikirlerinizi benimle paylaşmak, projeye destek olmak isterseniz memnuniyet duyarım. Kaynağın sizlere bol fayda sağlaması dileğiyle ✋🎉
 
 # <h1 name="kaynakca"><strong>Kaynakçalar<strong></h1>
 

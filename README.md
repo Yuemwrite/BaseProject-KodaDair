@@ -1006,7 +1006,17 @@ Geniş Ekosistem ve Topluluk Desteği: MongoDB, büyük bir açık kaynak toplul
 
 MongoDB, genellikle büyük ve büyümekte olan veri tabanları, e-ticaret uygulamaları, analitik projeler, içerik yönetimi sistemleri, sosyal medya uygulamaları ve daha birçok veri yoğun uygulama için tercih edilir. Ancak, hangi veritabanının kullanılacağı, projenizin özel gereksinimlerine ve kullanım senaryolarına bağlı olarak değişebilir.
 
-MongoDB'yi projede verilerin izlenmesi, hataların izlenmesi, amacıyla kullanılmıştır. Projede IMongoDbService ve MongoDbService üzerinden generic tanımlamalar yapılmıştır.
+MongoDB projede verilerin izlenmesi, hataların izlenmesi, amacıyla kullanılmıştır. Projede IMongoDbService ve MongoDbService üzerinden generic tanımlamalar yapılmıştır.
+
+<code>Configuration Tanımlaması</code>
+```csharp
+ "NoSqlConfiguration" : {
+    "MongoDb" : {
+      "ConnectionString" : "",
+      "DatabaseName" : ""
+    }
+  }
+```
 
 <code>IMongoDbService Yapısı</code>
 ```csharp

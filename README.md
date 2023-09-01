@@ -31,6 +31,8 @@
    * [Seed Yapısı](#seed-yapi)
    * [Saylalama Yapısı(Pagination)](#pagination)
    * [Environment Yapısı](#environment)
+   * [NoSQL](#nosql)
+     * [MongoDB](#mongodb) 
 
 * [KodaDair](#koda-dair)
    * [KodaDair Konusu Nedir?](#kodadair-konu)
@@ -978,6 +980,126 @@ Migration Çıkmak ve Database Oluşturmak İçin Terminalde Aşağıdaki Kodlar
 ```csharp
    dotnet ef database update -p BaseProject.WebAPI -c ApplicationDbContext 
 ```
+
+# <h3 name="nosql"><strong>NOSQL<strong></h3>
+
+NoSQL, "Not Only SQL" veya "Non-Relational" olarak da bilinen bir veritabanı türünü ifade eder. Geleneksel ilişkisel veritabanlarına (SQL veritabanları) alternatif olarak geliştirilmiş bir veritabanı yaklaşımını temsil eder. NoSQL veritabanları, ilişkisel veritabanlarından farklı veri modeli, saklama yapıları ve sorgulama yöntemleri kullanır.
+
+# <h3 name="mongodb"><strong>MongoDB<strong></h3>
+
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/c7692df2-979a-4584-8ec6-a906d02b3bd0)
+
+
+MongoDB, açık kaynaklı bir NoSQL veritabanı yönetim sistemidir. MongoDB, belge tabanlı bir veritabanıdır, yani veriler JSON benzeri BSON belgeleri olarak saklanır. İşte MongoDB'nin kullanım alanları ve neden kullanıldığına dair bazı anahtar nedenler:
+
+Esnek Veri Modeli: MongoDB, belge tabanlı bir veritabanı olduğu için veri yapıları daha esnek ve dinamik olabilir. Her belge, farklı alanlara sahip olabilir ve şema (schema) değişiklikleri kolayca uygulanabilir. Bu, hızlı prototipleme ve geliştirme süreçlerine izin verir.
+
+Yatay Ölçeklenebilirlik: MongoDB, dağıtık veritabanları oluşturmak ve büyük veri hacimlerini işlemek için tasarlanmıştır. Veritabanı, verilerinizi kolayca yatay olarak ölçeklendirebilmenizi sağlar.
+
+Hızlı ve Yüksek Performans: MongoDB, büyük veri kümesini hızlı bir şekilde işleyebilir ve sorguları hızlı bir şekilde gerçekleştirebilir. Özellikle okuma işlemleri (read) için yüksek performans sağlar.
+
+Doküman Tabanlı Veri Depolama: MongoDB, JSON benzeri BSON formatında dokümanları saklar. Bu, verilerin uygulama kodu ile daha uyumlu çalışmasını sağlar, çünkü veriler doğrudan uygulama nesneleriyle eşleştirilebilir.
+
+Düşük Yönetim Yükü: MongoDB, veritabanı yöneticileri için daha az karmaşık bir yönetim deneyimi sunar. İlişkisel veritabanlarına kıyasla daha az işlem gerektiren otomatik indeksleme ve yedekleme özellikleri vardır.
+
+Geniş Ekosistem ve Topluluk Desteği: MongoDB, büyük bir açık kaynak topluluğu tarafından desteklenmektedir ve geniş bir ekosistemi vardır. Bu, geliştiricilerin çeşitli araçlar ve kütüphanelerle entegrasyon yapmasını kolaylaştırır.
+
+MongoDB, genellikle büyük ve büyümekte olan veri tabanları, e-ticaret uygulamaları, analitik projeler, içerik yönetimi sistemleri, sosyal medya uygulamaları ve daha birçok veri yoğun uygulama için tercih edilir. Ancak, hangi veritabanının kullanılacağı, projenizin özel gereksinimlerine ve kullanım senaryolarına bağlı olarak değişebilir.
+
+MongoDB'yi projede verilerin izlenmesi, hataların izlenmesi, amacıyla kullanılmıştır. Projede IMongoDbService ve MongoDbService üzerinden generic tanımlamalar yapılmıştır.
+
+<code>IMongoDbService Yapısı</code>
+```csharp
+   public interface IMongoDbService
+{
+  Task<IMongoCollection<T>> GetCollection<T>(string collectionName);
+
+  Task<object> Create<T>(T entity, string name);
+
+  Task<List<T>> List<T>(string name);
+
+}
+```
+
+<code>MongoDbService Yapısı</code>
+```csharp
+   public class MongoDbService : IMongoDbService
+{
+    private readonly NoSqlConfiguration _noSqlConfiguration;
+    private readonly IConfiguration _configuration;
+
+    public MongoDbService(IConfiguration configuration)
+    {
+        _configuration = configuration;
+        _noSqlConfiguration = _configuration.GetSection("NoSqlConfiguration").Get<NoSqlConfiguration>();
+    }
+
+    private async Task<MongoClient> Client()
+    {
+        var client = new MongoClient(_noSqlConfiguration.MongoDb.ConnectionString);
+        return client;
+    }
+
+    private async Task<IMongoDatabase> Database()
+    {
+        var database =  Client().Result.GetDatabase(_noSqlConfiguration.MongoDb.DatabaseName);
+        return database;
+    }
+
+    public async Task<IMongoCollection<T>> GetCollection<T>(string collectionName)
+    {
+        var collection = Database().Result.GetCollection<T>(collectionName);
+        return collection;
+    }
+
+    public async Task<object> Create<T>(T entity, string name)
+    {
+        var collection = await GetCollection<T>(name);
+
+        return collection.InsertOneAsync(entity);
+    }
+
+    public async Task<List<T>> List<T>(string name)
+    {
+        var collection = await GetCollection<T>(name);
+
+        return await collection.Find(db => true).ToListAsync();
+    }
+}
+```
+<code>Örnek Kullanım / Kullanıcı Girişinde Hatanın Yakalanarak MongoDB'ye Aktarılması</code>
+```csharp
+if (!validatePassword)
+            {
+                var errorLog = new Domain.Concrete.ErrorLog()
+                {
+                    Id = ObjectId.GenerateNewId(),
+                    CreationTime = DateTime.UtcNow,
+                    UserName = user.UserName,
+                    ErrorType = ApiException.ExceptionMessages.UsernameOrPasswordIsIncorrect.ToString(),
+                    ErrorDescription = ApiException.ExceptionMessages.UsernameOrPasswordIsIncorrect.GetCustomDisplayName()
+                };
+
+                await _mongoDbService.Create(errorLog, "ErrorLog");
+                
+                return (Result)await Result.FailAsync(new ErrorInfo()
+                {
+                    Code = ((int)ApiException.ExceptionMessages.UsernameOrPasswordIsIncorrect).ToString(),
+                    Message = new List<string>() { ApiException.ExceptionMessages.UsernameOrPasswordIsIncorrect.GetCustomDisplayName() }
+                });
+            }
+```
+
+-> Atılan Kayıtlar Aşağıdaki Gibi MongoDB Ekranında Görülmektedir
+
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/31fbe380-dd63-4616-a330-2d11e61a5eac)
+
+-> Yakalanan Hataların Listelendiği API ve Çıktısı Aşağıdaki Gibidir
+
+![resim](https://github.com/Yuemwrite/BaseProject-KodaDair/assets/32547627/e13de14e-751b-4883-b243-350a3785be8b)
+
+
+
 
 ### <h1 name="koda-dair"><strong>KodaDair<strong></h1>
 

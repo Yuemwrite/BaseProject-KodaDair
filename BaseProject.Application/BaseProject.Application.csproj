@@ -17,6 +17,7 @@
       <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.4" />
       <PackageReference Include="MySql.Data" Version="8.0.33" />
+      <PackageReference Include="NEST" Version="7.17.5" />
       <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
       <PackageReference Include="Quartz" Version="3.6.2" />
       <PackageReference Include="Quartz.Extensions.DependencyInjection" Version="3.6.2" />
@@ -28,7 +29,13 @@
     <ItemGroup>
       <ProjectReference Include="..\BaseProject.Domain\BaseProject.Domain.csproj" />
       <ProjectReference Include="..\Shared\Shared.csproj" />
+
+
+
+
+
     </ItemGroup>
+
 
 
 

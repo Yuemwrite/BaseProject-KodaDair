@@ -1,7 +1,9 @@
+using System.Text.Json;
 using BaseProject.Application.Abstraction.Abstract;
 using BaseProject.Application.Abstraction.Base;
 using BaseProject.Application.Common.Exceptions;
 using BaseProject.Application.Common.Interfaces;
+using BaseProject.Application.MongoDb;
 using BaseProject.Application.Utilities.Encryption;
 using BaseProject.Application.Wrapper;
 using Domain.Concrete;
@@ -9,6 +11,7 @@ using Domain.Dto;
 using Domain.Enum;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using MongoDB.Bson;
 using Shared.Common.Extensions;
 
 namespace BaseProject.Application.Handlers.Users.Commands;
@@ -28,14 +31,16 @@ public class CreateUserCommand : IRequest<Result>
         private readonly IEntityRepository<User> _userRepository;
         private readonly IEntityRepository<TransactionUser> _transactionUserRepository;
         private readonly ITwoFactorAuthenticationRepository _twoFactorAuthenticationRepository;
+        private readonly IMongoDbService _mongoDbService;
 
         public CreateUserCommandHandler(IEntityRepository<User> userRepository,
             IEntityRepository<TransactionUser> transactionUserRepository,
-            ITwoFactorAuthenticationRepository twoFactorAuthenticationRepository)
+            ITwoFactorAuthenticationRepository twoFactorAuthenticationRepository, IMongoDbService mongoDbService)
         {
             _userRepository = userRepository;
             _transactionUserRepository = transactionUserRepository;
             _twoFactorAuthenticationRepository = twoFactorAuthenticationRepository;
+            _mongoDbService = mongoDbService;
         }
 
         public async Task<Result> Handle(CreateUserCommand request, CancellationToken cancellationToken)
@@ -65,6 +70,14 @@ public class CreateUserCommand : IRequest<Result>
                 transactionUser.Email, OneTimePasswordChannel.Email);
 
 
+            var report = new Report()
+            {
+                Id = ObjectId.GenerateNewId(),
+                Name = JsonSerializer.Serialize(request)
+            };
+
+            await _mongoDbService.Create(report, "Report");
+            
             return await Result<object>
                 .SuccessAsync(new
                 {

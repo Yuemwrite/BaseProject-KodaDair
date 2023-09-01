@@ -4,6 +4,7 @@ using BaseProject.Application.Abstraction.Base;
 using BaseProject.Application.Common.Interfaces;
 using BaseProject.Application.Identity.Tokens;
 using BaseProject.Application.MessageService;
+using BaseProject.Application.MongoDb;
 using BaseProject.Application.Redis;
 using BaseProject.Infrastructure.Automapper;
 using BaseProject.Infrastructure.Context;
@@ -95,7 +96,6 @@ public static class Startup
             .AddTransient<IMessageService, MessageService.SmsService>()
             .AddTransient<IMessageServiceFactory, MessageServiceFactory>()
             .AddTransient<ITokenService, TokenService>()
-            .AddSingleton<IRedisService, RedisService>()
             .AddTransient<IDatabaseInitializer, DatabaseInitializer>()
             .AddTransient<ApplicationDbInitializer>();
     }
@@ -103,7 +103,9 @@ public static class Startup
     internal static IServiceCollection AddSingletonService(this IServiceCollection services)
     {
         return services
-            .AddSingleton<IEmailService, EmailService>();
+            .AddSingleton<IEmailService, EmailService>()
+            .AddSingleton<IRedisService, RedisService>()
+            .AddSingleton<IMongoDbService, MongoDbService>();
     }
     
     internal static IServiceCollection AutoMapper(this IServiceCollection services)

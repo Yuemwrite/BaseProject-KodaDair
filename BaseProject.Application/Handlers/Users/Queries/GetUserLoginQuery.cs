@@ -2,6 +2,7 @@ using Azure;
 using BaseProject.Application.Abstraction.Base;
 using BaseProject.Application.Common.Exceptions;
 using BaseProject.Application.Identity.Tokens;
+using BaseProject.Application.MongoDb;
 using BaseProject.Application.Utilities.Encryption;
 using BaseProject.Application.Wrapper;
 using Domain.Concrete;
@@ -10,6 +11,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using MongoDB.Bson;
 using Shared.Common.Extensions;
 
 namespace BaseProject.Application.Handlers.Users.Queries;
@@ -26,14 +28,16 @@ public class GetUserLoginQuery : IRequest<Result>
         private readonly ITokenService _tokenService;
         private readonly IConfiguration _configuration;
         private readonly ILogger<GetUserLoginQueryHandler> _logger;
+        private readonly IMongoDbService _mongoDbService;
 
         public GetUserLoginQueryHandler(IEntityRepository<User> userRepository, ITokenService tokenService,
-            IConfiguration configuration, ILogger<GetUserLoginQueryHandler> logger)
+            IConfiguration configuration, ILogger<GetUserLoginQueryHandler> logger, IMongoDbService mongoDbService)
         {
             _userRepository = userRepository;
             _tokenService = tokenService;
             _configuration = configuration;
             _logger = logger;
+            _mongoDbService = mongoDbService;
         }
 
         public async Task<Result> Handle(GetUserLoginQuery request, CancellationToken cancellationToken)
@@ -56,6 +60,17 @@ public class GetUserLoginQuery : IRequest<Result>
 
             if (!validatePassword)
             {
+                var errorLog = new Domain.Concrete.ErrorLog()
+                {
+                    Id = ObjectId.GenerateNewId(),
+                    CreationTime = DateTime.UtcNow,
+                    UserName = user.UserName,
+                    ErrorType = ApiException.ExceptionMessages.UsernameOrPasswordIsIncorrect.ToString(),
+                    ErrorDescription = ApiException.ExceptionMessages.UsernameOrPasswordIsIncorrect.GetCustomDisplayName()
+                };
+
+                await _mongoDbService.Create(errorLog, "ErrorLog");
+                
                 _logger.LogError("Kullanıcı adı veya şifre yanlış");
                 return (Result)await Result.FailAsync(new ErrorInfo()
                 {

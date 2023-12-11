@@ -21,7 +21,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\BaseProject.Infrastructure\BaseProject.Infrastructure.csproj" />
       <ProjectReference Include="..\Migratiors.Local\Migratiors.Local.csproj" />
     </ItemGroup>
 

@@ -25,13 +25,15 @@ public class CreateUserProfileCommand : IRequest<Result>
         private readonly IEntityRepository<Profile> _profileRepository;
         private readonly IUserRepository _userRepository;
         private readonly IFollowerRepository _followerRepository;
+        private readonly IEntityGeneralRepository _entityGeneralRepository;
         
-        public CreateUserProfileCommandHandler(ICurrentUser currentUser, IEntityRepository<Profile> profileRepository, IUserRepository userRepository, IFollowerRepository followerRepository)
+        public CreateUserProfileCommandHandler(ICurrentUser currentUser, IEntityRepository<Profile> profileRepository, IUserRepository userRepository, IFollowerRepository followerRepository, IEntityGeneralRepository entityGeneralRepository)
         {
             _currentUser = currentUser;
             _profileRepository = profileRepository;
             _userRepository = userRepository;
             _followerRepository = followerRepository;
+            _entityGeneralRepository = entityGeneralRepository;
         }
 
         public async Task<Result> Handle(CreateUserProfileCommand request, CancellationToken cancellationToken)
@@ -44,7 +46,8 @@ public class CreateUserProfileCommand : IRequest<Result>
                     Message = new List<string>() { ApiException.ExceptionMessages.AlreadyExistProfileInfo.GetCustomDisplayName() }
                 });
             }
-            
+
+            _entityGeneralRepository.BeginTransaction();
             
             var profile = new Profile()
             {

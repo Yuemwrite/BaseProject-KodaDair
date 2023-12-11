@@ -1,5 +1,4 @@
 using BaseProject.Application.Handlers.ErrorLogs.Queries;
-using BaseProject.Application.Handlers.MongoDb;
 using BaseProject.WebAPI.Controllers.BaseController;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

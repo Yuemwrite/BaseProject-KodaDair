@@ -70,13 +70,13 @@ public class CreateUserCommand : IRequest<Result>
                 transactionUser.Email, OneTimePasswordChannel.Email);
 
 
-            var report = new Report()
-            {
-                Id = ObjectId.GenerateNewId(),
-                Name = JsonSerializer.Serialize(request)
-            };
-
-            await _mongoDbService.Create(report, "Report");
+            // var report = new Report()
+            // {
+            //     Id = ObjectId.GenerateNewId(),
+            //     Name = JsonSerializer.Serialize(request)
+            // };
+            //
+            // await _mongoDbService.Create(report, "Report");
             
             return await Result<object>
                 .SuccessAsync(new

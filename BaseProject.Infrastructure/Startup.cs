@@ -5,8 +5,8 @@ using BaseProject.Application.Common;
 using BaseProject.Application.Identity.Tokens;
 using BaseProject.Infrastructure.Auth;
 using BaseProject.Infrastructure.Context;
-using BaseProject.Infrastructure.Identity;
-using BaseProject.Infrastructure.Log;
+
+
 using BaseProject.Infrastructure.Middleware;
 using BaseProject.Infrastructure.Persistence;
 using BaseProject.Infrastructure.Persistence.Base;
@@ -29,7 +29,6 @@ public static class Startup
             .AddSingletonService()
             .AddAuth(config)
             .AddMemoryCache()
-            .AddLog()
             .RegisterDatabase(config)
             .AddExceptionMiddleware()
             .AddQuartz()

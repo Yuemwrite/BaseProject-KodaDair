@@ -27,13 +27,15 @@ public class CreateSharingCommand : IRequest<Result>
         private readonly ICurrentUser _currentUser;
         private readonly IEntityRepository<Category> _categoryRepository;
         private readonly IMapper _mapper;
+        private readonly IEntityGeneralRepository _repository;
 
-        public CreateSharingCommandHandler(IEntityRepository<Sharing> sharingRepository, ICurrentUser currentUser, IEntityRepository<Category> categoryRepository, IMapper mapper)
+        public CreateSharingCommandHandler(IEntityRepository<Sharing> sharingRepository, ICurrentUser currentUser, IEntityRepository<Category> categoryRepository, IMapper mapper, IEntityGeneralRepository repository)
         {
             _sharingRepository = sharingRepository;
             _currentUser = currentUser;
             _categoryRepository = categoryRepository;
             _mapper = mapper;
+            _repository = repository;
         }
 
         public async Task<Result> Handle(CreateSharingCommand request, CancellationToken cancellationToken)
@@ -44,6 +46,8 @@ public class CreateSharingCommand : IRequest<Result>
             {
                 throw new UserFriendlyException(ApiException.ExceptionMessages.CategoryNotFound);
             }
+
+            // using var dbTransaction = _sharingRepository.BeginTransaction();
             
             var sharing = new Sharing()
             {
@@ -59,6 +63,20 @@ public class CreateSharingCommand : IRequest<Result>
 
             _sharingRepository.Add(sharing);
             await _sharingRepository.SaveChangesAsync();
+
+            var comment = new Comment()
+            {
+                UserId = _currentUser.GetUserId(),
+                SharingId = new Guid(),
+                Content = "test",
+                CreationTime = DateTime.UtcNow,
+                CreatorUserId = _currentUser.GetUserId()
+            };
+
+            _repository.Add(comment);
+            await _repository.SaveChangesAsync();
+            
+           // dbTransaction.Commit();
 
 
             var result = _mapper.Map<SharingDto>(sharing);

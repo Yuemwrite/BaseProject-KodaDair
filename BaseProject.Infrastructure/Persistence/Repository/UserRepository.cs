@@ -11,4 +11,6 @@ public class UserRepository :  EfEntityRepositoryBase<User, ApplicationDbContext
     public UserRepository(ApplicationDbContext context) : base(context)
     {
     }
+    
+    
 }

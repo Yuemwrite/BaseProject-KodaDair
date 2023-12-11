@@ -17,8 +17,8 @@ public class EfGeneralRepository<TContext> : IEntityGeneralRepository
     
     protected TContext Context { get; set; }
     public IDbContextBehaivor DbContextBehavior { get; }
-    
-    public DatabaseFacade Database { get; }
+
+    public DatabaseFacade Database => Context.Database;
     
     public EfGeneralRepository(TContext context)
     {
@@ -35,42 +35,42 @@ public class EfGeneralRepository<TContext> : IEntityGeneralRepository
 
     public IDbContextTransaction BeginTransaction()
     {
-        throw new NotImplementedException();
+        return Database.BeginTransaction();
     }
 
     public IDbContextTransaction BeginTransaction(IsolationLevel isolationLevel)
     {
-        throw new NotImplementedException();
+        return Database.BeginTransaction(isolationLevel);
     }
 
     public Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return Database.BeginTransactionAsync(cancellationToken: cancellationToken);
     }
 
     public Task<IDbContextTransaction> BeginTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return Database.BeginTransactionAsync(isolationLevel, cancellationToken: cancellationToken);
     }
 
     public void CommitTransaction()
     {
-        throw new NotImplementedException();
+        Database.CommitTransaction();
     }
 
     public Task CommitTransactionAsync(CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return Database.CommitTransactionAsync(cancellationToken: cancellationToken);
     }
 
     public void RollbackTransaction()
     {
-        throw new NotImplementedException();
+        Database.RollbackTransaction();
     }
 
     public Task RollbackTransactionAsync(CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return Database.RollbackTransactionAsync(cancellationToken: cancellationToken);
     }
 
     public IQueryable<TEntity> Query<TEntity>() where TEntity : class

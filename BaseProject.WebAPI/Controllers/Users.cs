@@ -157,4 +157,10 @@ public class Users : BaseApiController
         return Ok(await Mediator.Send(new GetWorkExperienceQuery(){Id = id}));
     }
     
+    [HttpGet("userbenchmark")]
+    public async Task<ActionResult> benchmarktest()
+    {
+        return Ok(await Mediator.Send(new GetBenchMarkQuery()));
+    }
+    
 }

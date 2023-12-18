@@ -5,6 +5,7 @@ namespace Domain.Concrete;
 
 public class Category : FullAuditableEntity<long>
 {
+    //Test branch
     public string Name { get; set; }
 
     #region RelationEntities

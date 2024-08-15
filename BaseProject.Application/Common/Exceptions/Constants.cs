@@ -6,7 +6,7 @@ public static class ApiException
 {
     public enum ExceptionMessages
     {
-        [Display(Name = "Kullanıcı ismi kullanılıyor.", Order = 400)]
+        [Display(Name = "Kullanıcı ismi kullanılıyor.", Order = 400)]  
         AlreadyExistUserName = 1,
         [Display(Name = "Kategori bilgisi bulunamadı", Order = 400)]
         CategoryNotFound = 2,
